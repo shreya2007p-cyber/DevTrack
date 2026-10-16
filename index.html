@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="DevTrack — your developer productivity dashboard">
+
+  <title>DevTrack | Developer Dashboard</title>
+
+  <!-- Connect the CSS file -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Connect JavaScript after HTML parsing -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="logo" href="#" aria-label="DevTrack home">
+        <span class="logo-icon">D</span>
+        <span>DevTrack</span>
+      </a>
+
+      <span class="status">
+        <span class="status-dot"></span>
+        Project setup
+      </span>
+    </header>
+
+    <main class="hero">
+      <p class="eyebrow">YOUR DEVELOPER WORKSPACE</p>
+
+      <h1>Build better.<br><span>Track your progress.</span></h1>
+
+      <p class="description">
+        One workspace for your coding projects, daily tasks,
+        and learning journey.
+      </p>
+
+      <button id="startButton" type="button">
+        Explore DevTrack <span aria-hidden="true">→</span>
+      </button>
+
+      <p id="message" class="message" aria-live="polite">
+        Your next project starts here.
+      </p>
+    </main>
+
+    <section class="preview" aria-label="Planned dashboard features">
+      <article class="feature-card">
+        <span class="card-icon">01</span>
+        <h2>Projects</h2>
+        <p>Organize your development work.</p>
+      </article>
+
+      <article class="feature-card">
+        <span class="card-icon">02</span>
+        <h2>Tasks</h2>
+        <p>Turn goals into actionable steps.</p>
+      </article>
+
+      <article class="feature-card">
+        <span class="card-icon">03</span>
+        <h2>Progress</h2>
+        <p>See what you have accomplished.</p>
+      </article>
+    </section>
+
+    <footer>
+      DevTrack <span aria-hidden="true">·</span> Version 0.1
+    </footer>
+  </div>
+</body>
+</html>
