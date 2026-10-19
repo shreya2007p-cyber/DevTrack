@@ -3,74 +3,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="DevTrack — your developer productivity dashboard">
-
-  <title>DevTrack | Developer Dashboard</title>
-
-  <!-- Connect the CSS file -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage projects and tasks with DevTrack.">
+  <title>DevTrack | Dashboard</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Connect JavaScript after HTML parsing -->
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <a class="logo" href="#" aria-label="DevTrack home">
-        <span class="logo-icon">D</span>
-        <span>DevTrack</span>
-      </a>
+<div class="app-layout">
+  <aside class="sidebar">
+    <a class="logo" href="#dashboard"><span class="logo-icon">D</span> DevTrack</a>
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <p class="nav-heading">WORKSPACE</p>
+      <a class="nav-link active" href="#dashboard">▦ Dashboard</a>
+      <a class="nav-link" href="#projects">▣ Projects</a>
+      <a class="nav-link" href="#task-board">☷ My Tasks</a>
+      <a class="nav-link" href="#analytics">▥ Analytics</a>
+      <p class="nav-heading">PERSONAL</p>
+      <a class="nav-link" href="#upcoming">◷ Upcoming</a>
+      <a class="nav-link" href="#activity">◉ Activity</a>
+    </nav>
+    <p class="sidebar-note">Keep building. Keep improving.</p>
+  </aside>
 
-      <span class="status">
-        <span class="status-dot"></span>
-        Project setup
-      </span>
+  <div class="main-shell">
+    <header class="topbar">
+      <span>Workspace / Dashboard</span>
+      <label class="search-wrap">
+        <span class="visually-hidden">Search tasks</span>
+        <input id="globalSearch" type="search" placeholder="Search tasks...">
+      </label>
+      <span class="avatar" aria-label="Developer profile">D</span>
     </header>
 
-    <main class="hero">
-      <p class="eyebrow">YOUR DEVELOPER WORKSPACE</p>
+    <main id="dashboard" class="dashboard-content">
+      <section class="welcome-section">
+        <div>
+          <p class="eyebrow">YOUR DEVELOPER WORKSPACE</p>
+          <h1>Welcome back, Developer</h1>
+          <p>Here's an overview of your projects and progress.</p>
+        </div>
+        <button id="addTaskButton" class="primary-button" type="button">+ Add New Task</button>
+      </section>
 
-      <h1>Build better.<br><span>Track your progress.</span></h1>
+      <section class="stats-grid" aria-label="Task statistics">
+        <article class="stat-card"><p>Total Projects</p><strong id="totalProjects">3</strong></article>
+        <article class="stat-card"><p>Active Tasks</p><strong id="activeTasks">0</strong></article>
+        <article class="stat-card"><p>Completed Tasks</p><strong id="completedTasks">0</strong></article>
+        <article class="stat-card"><p>Completion Rate</p><strong id="completionRate">0%</strong></article>
+      </section>
 
-      <p class="description">
-        One workspace for your coding projects, daily tasks,
-        and learning journey.
-      </p>
+      <section id="projects" class="section">
+        <h2>Your Projects</h2>
+        <div class="project-grid">
+          <article class="project-card"><h3>Portfolio Website</h3><p>Personal web presence</p><progress value="75" max="100"></progress><span>75% complete</span></article>
+          <article class="project-card"><h3>DevTrack Dashboard</h3><p>Developer productivity</p><progress value="35" max="100"></progress><span>35% complete</span></article>
+          <article class="project-card"><h3>DSA Practice</h3><p>Algorithm preparation</p><progress value="50" max="100"></progress><span>50% complete</span></article>
+        </div>
+      </section>
 
-      <button id="startButton" type="button">
-        Explore DevTrack <span aria-hidden="true">→</span>
-      </button>
+      <section id="task-board" class="section">
+        <div class="section-heading">
+          <div><h2>Task Board</h2><p>Plan, track, and complete your work.</p></div>
+          <span id="taskTotal" class="muted">0 tasks</span>
+        </div>
+        <div class="kanban-board">
+          <section class="kanban-column" data-status="Backlog">
+            <h3>Backlog <span class="column-count">0</span></h3>
+            <div class="task-list"></div>
+            <p class="empty-state">No tasks here.</p>
+          </section>
+          <section class="kanban-column" data-status="In Progress">
+            <h3>In Progress <span class="column-count">0</span></h3>
+            <div class="task-list"></div>
+            <p class="empty-state">No tasks here.</p>
+          </section>
+          <section class="kanban-column" data-status="In Review">
+            <h3>In Review <span class="column-count">0</span></h3>
+            <div class="task-list"></div>
+            <p class="empty-state">No tasks here.</p>
+          </section>
+          <section class="kanban-column" data-status="Completed">
+            <h3>Completed <span class="column-count">0</span></h3>
+            <div class="task-list"></div>
+            <p class="empty-state">No tasks here.</p>
+          </section>
+        </div>
+        <p id="searchEmpty" class="empty-state" hidden>No tasks match your search.</p>
+      </section>
 
-      <p id="message" class="message" aria-live="polite">
-        Your next project starts here.
-      </p>
+      <section id="analytics" class="section panel">
+        <h2>Progress Overview</h2>
+        <p id="analyticsText">0% of tasks completed</p>
+        <progress id="analyticsProgress" value="0" max="100"></progress>
+      </section>
+
+      <div class="bottom-grid">
+        <section id="upcoming" class="panel">
+          <h2>Upcoming Deadlines</h2>
+          <ul id="deadlineList"><li class="muted">No upcoming deadlines.</li></ul>
+        </section>
+        <section id="activity" class="panel">
+          <h2>Recent Activity</h2>
+          <ul id="activityList"><li class="muted">Your task activity will appear here.</li></ul>
+        </section>
+      </div>
     </main>
 
-    <section class="preview" aria-label="Planned dashboard features">
-      <article class="feature-card">
-        <span class="card-icon">01</span>
-        <h2>Projects</h2>
-        <p>Organize your development work.</p>
-      </article>
-
-      <article class="feature-card">
-        <span class="card-icon">02</span>
-        <h2>Tasks</h2>
-        <p>Turn goals into actionable steps.</p>
-      </article>
-
-      <article class="feature-card">
-        <span class="card-icon">03</span>
-        <h2>Progress</h2>
-        <p>See what you have accomplished.</p>
-      </article>
-    </section>
-
-    <footer>
-      DevTrack <span aria-hidden="true">·</span> Version 0.1
-    </footer>
+    <footer class="app-footer">DevTrack · Build. Track. Improve.</footer>
   </div>
+</div>
+
+<!-- Task creation modal -->
+<dialog id="taskModal" class="task-modal">
+  <form id="taskForm">
+    <div class="modal-heading">
+      <div><p class="eyebrow">TASK MANAGEMENT</p><h2>Create a task</h2></div>
+      <button id="closeModal" class="icon-button" type="button" aria-label="Close dialog">✕</button>
+    </div>
+
+    <label for="taskTitle">Task title *</label>
+    <input id="taskTitle" name="title" required maxlength="100" placeholder="e.g. Build responsive navbar">
+
+    <label for="taskDescription">Description</label>
+    <textarea id="taskDescription" name="description" maxlength="500" rows="3" placeholder="What needs to be done?"></textarea>
+
+    <label for="taskStatus">Status</label>
+    <select id="taskStatus" name="status">
+      <option>Backlog</option>
+      <option>In Progress</option>
+      <option>In Review</option>
+      <option>Completed</option>
+    </select>
+
+    <label for="taskDueDate">Due date (optional)</label>
+    <input id="taskDueDate" name="dueDate" type="date">
+
+    <p id="formError" class="form-error" role="alert"></p>
+    <div class="modal-actions">
+      <button id="cancelModal" class="secondary-button" type="button">Cancel</button>
+      <button class="primary-button" type="submit">Save Task</button>
+    </div>
+  </form>
+</dialog>
 </body>
 </html>
